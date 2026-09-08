@@ -3213,8 +3213,9 @@
 
   /* 2. Mobile Hero Section */
   .hero-section {
-    padding: 5.5rem 1rem 3.5rem 1rem;
+    padding: 5.25rem 1rem 3.5rem 1rem;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
   }
@@ -3239,55 +3240,61 @@
   }
 
   .hero-logo-img {
-    width: clamp(140px, 38vw, 190px);
-    height: clamp(140px, 38vw, 190px);
-    margin-bottom: 0.75rem;
+    width: clamp(120px, 34vw, 170px);
+    height: clamp(120px, 34vw, 170px);
+    margin-bottom: 0.65rem;
   }
 
   .hero-eyebrow-tag {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
     margin-bottom: 0.35rem;
   }
 
   .hero-mall-title {
-    font-size: clamp(1.4rem, 6.2vw, 1.95rem);
-    letter-spacing: 0.06em;
-    line-height: 1.22;
-    margin-bottom: 0.75rem;
+    font-size: clamp(1.45rem, 5.8vw, 1.95rem);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: 0.65rem;
   }
 
   .hero-branches-row {
     gap: 0.5rem;
-    margin-bottom: 1.15rem;
+    margin-bottom: 1.1rem;
   }
 
-  .branch-name {
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
+  .hero-branch-name {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
   }
 
-  .branch-divider {
+  .hero-branch-divider {
     font-size: 0.8rem;
+    opacity: 0.6;
   }
 
   .hero-center-actions {
     gap: 0.65rem;
     width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .hero-primary-btn {
-    padding: 0.7rem 1.4rem;
+    padding: 0.7rem 1.35rem;
     font-size: 0.86rem;
-    flex: 1 1 auto;
-    min-width: 140px;
+    flex: 1 1 135px;
+    text-align: center;
   }
 
   .hero-secondary-btn {
     padding: 0.65rem 1.2rem;
     font-size: 0.84rem;
-    flex: 1 1 auto;
-    min-width: 130px;
+    flex: 1 1 125px;
+    text-align: center;
   }
 
   /* Dual Side-by-Side Reels on Mobile */
@@ -3304,8 +3311,8 @@
   }
 
   .reel-card {
-    max-height: 310px;
-    border-radius: 24px;
+    max-height: 295px;
+    border-radius: 22px;
     border: 3px solid #1c0d0f;
     outline: 1px solid rgba(246, 239, 227, 0.3);
     box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.8);
@@ -3322,7 +3329,7 @@
   }
 
   .reel-video {
-    border-radius: 20px;
+    border-radius: 18px;
   }
 
   .reel-sound-btn-bottom-right {
@@ -3337,80 +3344,162 @@
     height: 15px;
   }
 
-  /* 3. Mobile About Section */
+  /* ============================================================
+     3. Mobile About Section — Royal Diagonal Elephant Framing
+     Top-Left Elephant (above text) & Bottom-Right Elephant (below text)
+     ============================================================ */
   .about-scroll-track {
-    height: 220vh;
+    height: 240vh;
+    background-color: var(--bg-navbar);
+    position: relative;
   }
 
   .about-heritage-sticky {
-    padding: 0 0.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 1rem 0.5rem;
   }
 
   .about-corner-decor {
     display: none;
   }
 
-  .elephant-wrapper {
-    opacity: 1;
-    z-index: 12;
-    pointer-events: none;
+  .about-mandala-pattern {
+    opacity: 0.04;
   }
 
+  /* Left Elephant: Top Left just above the text */
   .elephant-left-wrapper {
-    left: -48px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .elephant-right-wrapper {
-    right: -48px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .elephant-img {
-    width: clamp(180px, 46vw, 240px);
-    max-height: 75vh;
+    position: absolute;
+    top: 1vh;
+    left: -4vw;
+    right: auto;
+    bottom: auto;
+    transform: none !important;
+    z-index: 6;
+    pointer-events: none;
     opacity: 1;
-    filter: drop-shadow(0 12px 28px rgba(126, 31, 38, 0.28))
-            drop-shadow(0 0 15px rgba(208, 180, 119, 0.2));
+    display: flex;
+  }
+
+  .elephant-left-wrapper .elephant-left-img {
+    width: clamp(230px, 58vw, 320px);
+    max-height: 36vh;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 28px rgba(126, 31, 38, 0.32))
+            drop-shadow(0 0 20px rgba(208, 180, 119, 0.4));
+  }
+
+  /* Right Elephant: Bottom Right just below the text */
+  .elephant-right-wrapper {
+    position: absolute;
+    bottom: 1vh;
+    right: -4vw;
+    top: auto;
+    left: auto;
+    transform: none !important;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 1;
+    display: flex;
+  }
+
+  .elephant-right-wrapper .elephant-right-img {
+    width: clamp(230px, 58vw, 320px);
+    max-height: 36vh;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 28px rgba(126, 31, 38, 0.32))
+            drop-shadow(0 0 20px rgba(208, 180, 119, 0.4));
   }
 
   .elephant-ground-shadow {
     display: none;
   }
 
+  /* Elephant Entrance Animations on Mobile */
+  .about-heritage-sticky:not(.in-view) .elephant-left-img {
+    transform: translateY(-24px) scale(0.85);
+    opacity: 0;
+  }
+
+  .about-heritage-sticky:not(.in-view) .elephant-right-img {
+    transform: translateY(24px) scale(0.85);
+    opacity: 0;
+  }
+
+  .about-heritage-sticky.in-view .elephant-left-img {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    animation: royalFloatTopLeft 6s ease-in-out infinite alternate;
+  }
+
+  .about-heritage-sticky.in-view .elephant-right-img {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    animation: royalFloatBottomRight 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes royalFloatTopLeft {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-6px) rotate(1.5deg);
+    }
+  }
+
+  @keyframes royalFloatBottomRight {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(6px) rotate(-1.5deg);
+    }
+  }
+
+  /* Center Stage on Mobile */
   .about-center-stage {
-    max-width: 335px;
-    width: 92%;
+    max-width: min(92vw, 420px);
+    width: 100%;
     padding: 0 0.5rem;
-    z-index: 5;
+    z-index: 8;
     position: relative;
     background: transparent;
     border: none;
     box-shadow: none;
+    margin: 0 auto;
   }
-
 
   .about-royal-badge {
     padding: 0.25rem 0.85rem;
     font-size: 0.68rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.75rem;
   }
 
   .about-brand-header {
-    gap: 0.85rem;
-    margin-bottom: 1rem;
+    gap: 0.75rem;
+    margin-bottom: 0.95rem;
   }
 
   .about-brand-logo-ring {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
   }
 
   .about-brand-logo-img {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
 
   .about-brand-title {
@@ -3419,33 +3508,37 @@
   }
 
   .about-brand-subtitle {
-    font-size: 0.65rem;
+    font-size: 0.64rem;
     letter-spacing: 0.18em;
   }
 
   .about-statement-stack {
-    min-height: 200px;
-    margin-bottom: 0.9rem;
+    min-height: clamp(160px, 24vh, 195px);
+    margin-bottom: 0.85rem;
   }
 
   .english-statement {
-    font-size: clamp(0.92rem, 3.6vw, 1.05rem);
-    line-height: 1.72;
+    font-size: clamp(0.96rem, 3.8vw, 1.12rem);
+    line-height: 1.78;
     font-weight: 500;
+    text-wrap: balance;
   }
 
   .telugu-statement {
-    font-size: clamp(0.98rem, 3.8vw, 1.12rem);
-    line-height: 1.92;
+    font-size: clamp(1.02rem, 4.1vw, 1.22rem);
+    line-height: 2.0;
     font-weight: 600;
+    text-wrap: balance;
   }
 
   .about-heritage-highlights {
     gap: 0.4rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .heritage-pill {
-    padding: 0.3rem 0.75rem;
+    padding: 0.32rem 0.75rem;
   }
 
   .pill-text {
@@ -3456,95 +3549,166 @@
     display: none;
   }
 
-  /* 4. Mobile Categories Section — Horizontal Glide Carousel */
+  /* ============================================================
+     4. Mobile Categories Section — Sticky Scroll-Driven Glide Carousel
+     ============================================================ */
   .categories-scroll-track {
-    height: 250vh;
+    height: 280vh;
+    background-color: var(--bg-navbar);
+    position: relative;
   }
 
   .categories-sticky-wrapper {
-    padding: 5.5rem 1rem 1.5rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 4.8rem 0.85rem 1.25rem 0.85rem;
   }
 
   .categories-peacock-backdrop {
     width: 85%;
-    opacity: 0.35;
+    opacity: 0.25;
   }
 
   .categories-peacock-sculpture {
-    right: -12vw;
-    width: clamp(200px, 46vw, 300px);
-    opacity: 0.32;
+    right: -10vw;
+    width: clamp(180px, 42vw, 260px);
+    opacity: 0.28;
   }
 
   .categories-header {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.15rem;
+    text-align: center;
+    width: 100%;
   }
 
   .categories-title {
-    font-size: 1.55rem;
+    font-size: clamp(1.45rem, 5.6vw, 1.8rem);
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
   }
 
   .categories-subtitle {
-    font-size: 0.82rem;
+    font-size: clamp(0.8rem, 2.7vw, 0.88rem);
+    line-height: 1.48;
     padding: 0 0.5rem;
+    max-width: 380px;
+    margin: 0 auto;
+    color: #634b49;
   }
 
+  /* Mobile Horizontal Centered Card Track */
   .categories-cards-grid {
     display: flex;
     flex-direction: row;
-    gap: 1.2rem;
+    align-items: flex-start;
+    --card-w: clamp(260px, 78vw, 315px);
+    --card-g: 1.2rem;
     width: 100%;
-    overflow-x: visible;
-    transform: translateX(calc(10% - (var(--card-mobile-progress, 0) * 65%)));
-    transition: transform 0.12s linear;
+    gap: var(--card-g);
+    position: relative;
+    z-index: 5;
+    overflow: visible;
+    transform: translateX(calc(50vw - (var(--card-w) / 2) - 0.85rem - (var(--card-mobile-progress, 0) * 2 * (var(--card-w) + var(--card-g)))));
+    transition: transform 0.08s linear;
+    will-change: transform;
   }
 
   .category-card {
-    width: clamp(260px, 78vw, 320px);
+    width: var(--card-w);
     flex-shrink: 0;
     transform: translateY(0) !important;
     opacity: 1 !important;
+    display: flex;
+    flex-direction: column;
   }
 
   .category-media-card {
-    border-radius: 18px;
+    position: relative;
+    width: 100%;
     height: auto;
+    border-radius: 18px;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: 0 12px 28px -4px rgba(36, 24, 23, 0.18),
+                0 4px 10px rgba(126, 31, 38, 0.06);
+    border: 1px solid rgba(126, 31, 38, 0.12);
+  }
+
+  .category-card-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 18px;
   }
 
   .category-card-info {
-    padding-top: 0.85rem;
+    padding-top: 0.75rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .category-card-heading-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+  }
+
+  .category-num-badge {
+    font-size: 0.92rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--logo-color);
   }
 
   .category-card-title {
     font-size: 1.25rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--nav-text);
   }
 
   .category-explore-btn {
-    font-size: 0.76rem;
-    padding: 0.38rem 0.88rem;
-    margin-top: 0.45rem;
+    font-size: 0.8rem;
+    padding: 0;
+    margin-top: 0.35rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
   /* 4.5 Mobile Infinite Showcase Section */
   .showcase-horizontal-section {
-    padding: 4.5rem 0 5.5rem 0;
+    padding: 4.5rem 0 5rem 0;
   }
 
   .showcase-section-header {
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
     padding: 0 1.25rem;
   }
 
   .showcase-main-title {
-    font-size: 1.85rem;
+    font-size: clamp(1.6rem, 6vw, 1.95rem);
   }
 
   .showcase-header-desc {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   .showcase-col {
-    height: 480px;
+    height: 460px;
   }
 
   .showcase-col-model {
@@ -3552,39 +3716,39 @@
   }
 
   .model-photo-wrapper {
-    height: 330px;
+    height: 310px;
   }
 
   .showcase-col-stacked {
-    width: 290px;
-    gap: 1rem;
+    width: 285px;
+    gap: 0.85rem;
   }
 
   .showcase-sliders-card {
-    height: 225px;
+    height: 220px;
     padding: 1.1rem 1.25rem;
   }
 
   .showcase-views-card {
-    height: 235px;
+    height: 225px;
     padding: 1.1rem 1.25rem;
   }
 
   .showcase-col-reel {
-    width: 280px;
+    width: 275px;
   }
 
   .showcase-col-ethos {
-    width: 290px;
-    padding: 1.4rem 1.25rem;
+    width: 285px;
+    padding: 1.35rem 1.2rem;
   }
 
   .showcase-craft-photo-card {
-    height: 230px;
+    height: 220px;
   }
 
   .showcase-pills-card {
-    height: 230px;
+    height: 220px;
     padding: 1.1rem 1.25rem;
   }
 
@@ -3594,34 +3758,35 @@
   }
 
   .branches-header {
-    margin-bottom: 2.75rem;
+    margin-bottom: 2.5rem;
   }
 
   .branches-title {
-    font-size: 1.85rem;
+    font-size: clamp(1.65rem, 6vw, 2.05rem);
   }
 
   .branches-supporting-text {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 
   .branches-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 480px;
-    margin: 0 auto 2.5rem auto;
+    gap: 1.85rem;
+    max-width: 440px;
+    margin: 0 auto 2.25rem auto;
   }
 
   .branch-photo-frame {
-    height: 300px;
+    height: 260px;
   }
 
   .branch-body {
-    padding: 1.4rem 1.25rem;
+    padding: 1.35rem 1.2rem;
   }
 
   .branch-name {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
 
   .branch-features-grid {
@@ -3632,14 +3797,14 @@
   .branches-concierge-strip {
     flex-direction: column;
     text-align: center;
-    padding: 1.5rem 1.25rem;
-    gap: 1.25rem;
+    padding: 1.35rem 1.15rem;
+    gap: 1.15rem;
   }
 
   .concierge-left {
     flex-direction: column;
     text-align: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
   .concierge-cta-btn {
@@ -3653,32 +3818,32 @@
   }
 
   .reviews-header {
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
   }
 
   .reviews-title {
-    font-size: 1.85rem;
+    font-size: clamp(1.65rem, 6vw, 2.05rem);
   }
 
   .reviews-fan-stage {
-    min-height: 420px;
+    min-height: 400px;
     padding-top: 0.5rem;
   }
 
   .reviews-cards-stack {
-    height: 310px;
-    max-width: 340px;
+    height: 300px;
+    max-width: 330px;
   }
 
   .review-fan-card {
-    width: calc(100vw - 44px);
+    width: calc(100vw - 36px);
     max-width: 330px;
-    min-height: 270px;
-    padding: 1.35rem 1.25rem;
+    min-height: 260px;
+    padding: 1.25rem 1.15rem;
   }
 
   .review-quote-body p {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     line-height: 1.52;
   }
 
@@ -3713,8 +3878,8 @@
   }
 
   .section-desc {
-    margin-bottom: 2.5rem;
-    font-size: 1rem;
+    margin-bottom: 2.25rem;
+    font-size: 0.95rem;
   }
 
   .cards-grid {
@@ -3723,7 +3888,7 @@
   }
 
   .feature-card {
-    padding: 1.75rem 1.4rem;
+    padding: 1.6rem 1.3rem;
   }
 
   /* 8. Mobile Editorial Footer */
@@ -3736,35 +3901,35 @@
   }
 
   .footer-brand-statement {
-    margin-bottom: 2rem;
+    margin-bottom: 1.85rem;
   }
 
   .footer-brand-logo {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
   }
 
   .footer-brand-title {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 
   .footer-brand-subtitle {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
   }
 
   .footer-brand-tagline {
-    font-size: 0.96rem;
+    font-size: 0.92rem;
   }
 
   .footer-main-grid {
     grid-template-columns: 1fr;
-    gap: 2.25rem;
-    margin-top: 2.25rem;
+    gap: 2rem;
+    margin-top: 2rem;
   }
 
   .footer-bottom-bar {
-    margin-top: 2.25rem;
-    padding-top: 1.25rem;
+    margin-top: 2rem;
+    padding-top: 1.15rem;
     flex-direction: column;
     text-align: center;
     gap: 0.75rem;
@@ -3887,20 +4052,18 @@
   }
 
   .reel-card {
-    max-height: 270px;
-    border-radius: 20px;
+    max-height: 260px;
+    border-radius: 18px;
   }
 
-  .elephant-left-wrapper {
-    left: -18vw;
+  .elephant-left-wrapper .elephant-left-img {
+    width: clamp(190px, 52vw, 260px);
+    max-height: 32vh;
   }
 
-  .elephant-right-wrapper {
-    right: -18vw;
-  }
-
-  .elephant-img {
-    width: clamp(170px, 44vw, 220px);
+  .elephant-right-wrapper .elephant-right-img {
+    width: clamp(190px, 52vw, 260px);
+    max-height: 32vh;
   }
 
   .about-center-stage {
@@ -3908,7 +4071,7 @@
   }
 
   .about-statement-stack {
-    min-height: 220px;
+    min-height: clamp(170px, 26vh, 210px);
   }
 
   .english-statement {
@@ -3917,7 +4080,11 @@
   }
 
   .telugu-statement {
-    font-size: 0.96rem;
-    line-height: 1.85;
+    font-size: 0.98rem;
+    line-height: 1.88;
+  }
+
+  .categories-cards-grid {
+    --card-w: 245px;
   }
 }

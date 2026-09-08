@@ -23,6 +23,8 @@ function App() {
   const [activeReviewIndex, setActiveReviewIndex] = useState(0)
   const targetCategoriesProgress = useRef(0)
   const currentCategoriesProgress = useRef(0)
+  const targetTranslateProgress = useRef(0)
+  const currentTranslateProgress = useRef(0)
   const rafId = useRef(null)
 
   const navItems = ['Home', 'About', 'Categories', 'Branches', 'Reviews', 'Contact']
@@ -303,7 +305,7 @@ function App() {
         if (totalScrollable > 0) {
           const scrolledDistance = -rect.top
           const progress = Math.min(1, Math.max(0, scrolledDistance / totalScrollable))
-          setTranslateProgress(progress)
+          targetTranslateProgress.current = progress
         }
       }
 
@@ -332,14 +334,24 @@ function App() {
     // High performance RAF loop for silky smooth 60/120fps motion interpolation
     let isRunning = true
     const loop = () => {
-      const diff = targetCategoriesProgress.current - currentCategoriesProgress.current
-      if (Math.abs(diff) > 0.0003) {
-        // 0.16 interpolation factor: instant responsiveness with ultra-smooth momentum
-        currentCategoriesProgress.current += diff * 0.16
+      // Categories lerp
+      const catDiff = targetCategoriesProgress.current - currentCategoriesProgress.current
+      if (Math.abs(catDiff) > 0.0003) {
+        currentCategoriesProgress.current += catDiff * 0.16
         setCategoriesProgress(currentCategoriesProgress.current)
       } else if (currentCategoriesProgress.current !== targetCategoriesProgress.current) {
         currentCategoriesProgress.current = targetCategoriesProgress.current
         setCategoriesProgress(currentCategoriesProgress.current)
+      }
+
+      // About translation lerp
+      const transDiff = targetTranslateProgress.current - currentTranslateProgress.current
+      if (Math.abs(transDiff) > 0.0003) {
+        currentTranslateProgress.current += transDiff * 0.16
+        setTranslateProgress(currentTranslateProgress.current)
+      } else if (currentTranslateProgress.current !== targetTranslateProgress.current) {
+        currentTranslateProgress.current = targetTranslateProgress.current
+        setTranslateProgress(currentTranslateProgress.current)
       }
 
       if (isRunning) {
@@ -903,7 +915,7 @@ function App() {
                       '--card-opacity': opacity
                     }}
                   >
-                    {/* Media Card Image Container */}
+                    {/* Media Card Image Container - Natural Sizing */}
                     <div className="category-media-card">
                       <img
                         src={cat.image}
@@ -913,7 +925,7 @@ function App() {
                       />
                     </div>
 
-                    {/* Card Info Details (Clean Number + Title + Explore Collections Button) */}
+                    {/* Card Info Details */}
                     <div className="category-card-info">
                       <div className="category-card-heading-row">
                         <span className="category-num-badge">{cat.id}</span>
