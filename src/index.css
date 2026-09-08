@@ -1,0 +1,49 @@
+:root {
+  /* Brand Color Tokens */
+  --bg-navbar: #F6EFE3;
+  --logo-color: #7E1F26;
+  --nav-text: #241817;
+  --nav-hover: #7E1F26;
+  --nav-cta-bg: #7E1F26;
+  --nav-cta-text: #F6EFE3;
+
+  --hero-bg: #7E1F26;
+  --hero-heading: #F6EFE3;
+  --hero-eyebrow: #D0B477;
+  --hero-desc: #E9D8D2;
+  --hero-btn-bg: #F6EFE3;
+  --hero-btn-text: #7E1F26;
+
+  /* Fixed Typography Stack */
+  --font-heading: 'Libre Bodoni', 'Bodoni MT', Didot, Georgia, serif;
+  --font-logo: 'Libre Bodoni', 'Bodoni MT', Didot, Georgia, serif;
+  --font-body: 'Kyndryl', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-nav: 'Kyndryl', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-telugu: 'Noto Serif Telugu', 'Peddana', 'Libre Bodoni', Georgia, serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--hero-bg);
+  color: var(--hero-desc);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
