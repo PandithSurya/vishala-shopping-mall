@@ -1356,6 +1356,10 @@ function App() {
         ref={branchesSectionRef}
         className={`branches-luxury-section ${isBranchesInView ? 'is-in-view' : ''}`}
       >
+        {/* Ambient Morphing Glow Orbs */}
+        <div className="branches-ambient-orb orb-1" aria-hidden="true" />
+        <div className="branches-ambient-orb orb-2" aria-hidden="true" />
+
         <div className="branches-container">
           {/* Section Header */}
           <div className="branches-header">

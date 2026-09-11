@@ -1934,6 +1934,57 @@
 /* ============================================================
    5. Branches Section — Grand Flagship Showcase
    ============================================================ */
+@keyframes branchOrbMorph1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(35px, -20px) scale(1.12);
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 50%;
+    opacity: 0.65;
+  }
+}
+
+@keyframes branchOrbMorph2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-30px, 18px) scale(1.1);
+    border-radius: 60% 40% 30% 70% / 40% 60% 40% 60%;
+    opacity: 0.6;
+  }
+}
+
+@keyframes branchCardShimmer {
+  0% {
+    left: -130%;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.85;
+  }
+  100% {
+    left: 170%;
+    opacity: 0;
+  }
+}
+
+@keyframes branchBadgePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 6px #4ADE80;
+  }
+  50% {
+    transform: scale(1.25);
+    box-shadow: 0 0 14px #4ADE80, 0 0 22px rgba(74, 222, 128, 0.6);
+  }
+}
+
 .branches-luxury-section {
   background: linear-gradient(180deg, #FAF7F2 0%, #F5EDE1 50%, #FAF6EE 100%);
   color: var(--nav-text);
@@ -1942,6 +1993,33 @@
   padding: 6.5rem 2rem 7rem 2rem;
   position: relative;
   overflow: hidden;
+  perspective: 1200px;
+}
+
+/* Ambient Background Morphing Orbs */
+.branches-ambient-orb {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(65px);
+  z-index: 0;
+}
+
+.branches-ambient-orb.orb-1 {
+  top: 8%;
+  left: 3%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(208, 180, 119, 0.22) 0%, rgba(126, 31, 38, 0.08) 60%, transparent 80%);
+  animation: branchOrbMorph1 14s ease-in-out infinite alternate;
+}
+
+.branches-ambient-orb.orb-2 {
+  bottom: 10%;
+  right: 4%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(126, 31, 38, 0.14) 0%, rgba(208, 180, 119, 0.16) 60%, transparent 80%);
+  animation: branchOrbMorph2 16s ease-in-out infinite alternate;
 }
 
 .branches-container {
@@ -1949,13 +2027,28 @@
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
-/* Section Header */
+/* Section Header: Morph & Glide in */
 .branches-header {
   text-align: center;
   max-width: 780px;
   margin: 0 auto 4rem auto;
+  opacity: 0;
+  transform: translateY(32px) scale(0.97);
+  filter: blur(8px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.branches-luxury-section.is-in-view .branches-header {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
 }
 
 .branches-eyebrow-pill {
@@ -2009,24 +2102,97 @@
   width: 100%;
   align-items: stretch;
   margin-bottom: 3.5rem;
+  perspective: 1400px;
 }
 
+/* 3 Branches Cards with Morph, Fade In & Staggered Motion */
 .branch-card {
   background: #FFFFFF;
-  border-radius: 24px;
+  border-radius: 36px;
   border: 1px solid rgba(208, 180, 119, 0.32);
   overflow: hidden;
   box-shadow: 0 16px 45px rgba(36, 24, 23, 0.07), 0 2px 6px rgba(36, 24, 23, 0.03);
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  position: relative;
   box-sizing: border-box;
+
+  /* Entrance animation initial state: Faded out, shifted down, morphed & blurred */
+  opacity: 0;
+  transform: translateY(55px) scale(0.93) rotateX(7deg);
+  filter: blur(10px);
+
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s ease;
+  will-change: opacity, transform, filter, border-radius;
 }
 
+/* Shimmer Sheen Beam Pseudo-Element */
+.branch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 45%,
+    rgba(208, 180, 119, 0.35) 60%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+}
+
+/* In-View Morph Entrance for all 3 cards */
+.branches-luxury-section.is-in-view .branch-card {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotateX(0deg);
+  filter: blur(0px);
+  border-radius: 24px;
+}
+
+/* Staggered Delay for the 3 Branches (01 Siricilla, 02 Vemulawada, 03 Siddipet) */
+.branches-luxury-section.is-in-view .branches-grid .branch-card:nth-child(1) {
+  transition-delay: 0.08s;
+}
+
+.branches-luxury-section.is-in-view .branches-grid .branch-card:nth-child(2) {
+  transition-delay: 0.24s;
+}
+
+.branches-luxury-section.is-in-view .branches-grid .branch-card:nth-child(3) {
+  transition-delay: 0.40s;
+}
+
+/* Interactive Hover Morph & Elevation */
 .branch-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 26px 60px rgba(36, 24, 23, 0.12), 0 0 20px rgba(208, 180, 119, 0.25);
-  border-color: rgba(208, 180, 119, 0.65);
+  transform: translateY(-12px) scale(1.025);
+  box-shadow: 0 32px 70px rgba(36, 24, 23, 0.16), 0 0 35px rgba(208, 180, 119, 0.35), 0 0 0 1px rgba(208, 180, 119, 0.55);
+  border-color: rgba(208, 180, 119, 0.85);
+  border-radius: 26px;
+  z-index: 5;
+}
+
+.branch-card:hover::before {
+  animation: branchCardShimmer 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Focus morph: when hovering one card, subtle dim for siblings on desktop */
+@media (hover: hover) and (min-width: 900px) {
+  .branches-grid:hover .branch-card:not(:hover) {
+    opacity: 0.86;
+    transform: scale(0.985);
+    filter: blur(0.35px);
+  }
 }
 
 .branch-photo-frame {
@@ -2043,11 +2209,17 @@
   object-fit: cover;
   object-position: center top;
   display: block;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.08);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.branches-luxury-section.is-in-view .branch-photo {
+  transform: scale(1);
 }
 
 .branch-card:hover .branch-photo {
-  transform: scale(1.06);
+  transform: scale(1.09) rotate(0.3deg);
+  filter: contrast(1.03) brightness(1.02);
 }
 
 .branch-photo-overlay {
@@ -2080,6 +2252,15 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   color: #D0B477;
+  transition: transform 0.35s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.branch-card:hover .branch-number-badge {
+  background: rgba(36, 24, 23, 0.95);
+  border-color: rgba(208, 180, 119, 0.8);
+  color: #F6EFE3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .branch-live-badge {
@@ -2096,6 +2277,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #FFFFFF;
+  transition: transform 0.35s ease;
 }
 
 .live-status-dot {
@@ -2105,6 +2287,7 @@
   background: #4ADE80;
   display: inline-block;
   box-shadow: 0 0 6px #4ADE80;
+  animation: branchBadgePulse 2.4s infinite ease-in-out;
 }
 
 .branch-bottom-tag {
@@ -2113,6 +2296,11 @@
   left: 16px;
   right: 16px;
   z-index: 2;
+  transition: transform 0.35s ease;
+}
+
+.branch-card:hover .branch-bottom-tag {
+  transform: translateY(-3px);
 }
 
 .branch-bottom-tag span {
@@ -2129,6 +2317,12 @@
   padding: 0.32rem 0.75rem;
   border-radius: 6px;
   border: 1px solid rgba(208, 180, 119, 0.35);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.branch-card:hover .branch-bottom-tag span {
+  border-color: rgba(208, 180, 119, 0.65);
+  background: rgba(126, 31, 38, 0.95);
 }
 
 .branch-body {
@@ -2151,6 +2345,11 @@
   text-transform: uppercase;
   color: #9A7738;
   margin-bottom: 0.35rem;
+  transition: color 0.3s ease;
+}
+
+.branch-card:hover .branch-tagline {
+  color: #B88E3E;
 }
 
 .branch-name {
@@ -2160,6 +2359,7 @@
   color: var(--logo-color);
   letter-spacing: 0.01em;
   line-height: 1.2;
+  transition: color 0.3s ease;
 }
 
 .branch-features-grid {
@@ -2182,6 +2382,13 @@
   font-size: 0.75rem;
   font-weight: 600;
   color: #4a2826;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.branch-card:hover .branch-feat-item {
+  background: rgba(126, 31, 38, 0.07);
+  border-color: rgba(208, 180, 119, 0.35);
+  transform: translateY(-1px);
 }
 
 .feat-icon {
@@ -2189,6 +2396,11 @@
   height: 14px;
   stroke: #C29B4A;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.branch-card:hover .feat-icon {
+  transform: scale(1.1);
 }
 
 .branch-details-box {
@@ -2289,7 +2501,7 @@
   stroke: currentColor;
 }
 
-/* Luxury Concierge Strip */
+/* Luxury Concierge Strip: Morph & Entrance */
 .branches-concierge-strip {
   background: linear-gradient(135deg, #241817 0%, #361F20 100%);
   border: 1px solid rgba(208, 180, 119, 0.45);
@@ -2300,6 +2512,19 @@
   justify-content: space-between;
   gap: 1.5rem;
   box-shadow: 0 14px 35px rgba(36, 24, 23, 0.14);
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  filter: blur(6px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.branches-luxury-section.is-in-view .branches-concierge-strip {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+  transition-delay: 0.52s;
 }
 
 .concierge-left {
@@ -4036,12 +4261,16 @@
   }
 
   .branches-header,
-  .branch-editorial-card,
+  .branch-card,
   .branch-photo,
   .branch-name,
-  .branch-directions-link .directions-arrow {
-    transition: opacity 0.3s ease !important;
+  .branches-concierge-strip,
+  .branches-ambient-orb {
+    animation: none !important;
+    opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+    transition: none !important;
   }
 }
 
